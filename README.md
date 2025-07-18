@@ -21,7 +21,23 @@ The code has been tested and confirmed to work in the following environment:
 
 ## Operating System
 - macOS 14.4
+
 # Usage
+0. Clone this repository:
+```
+git clone git@github.com:kazuibasou/researcher_population_pyramids.git
+```
+
+Go to `researcher_population_pyramids`:
+```
+cd researcher_population_pyramids
+```
+
+Run the following command:
+```
+mkdir data figs
+```
+
 1. Ensure that the following datasets are placed in the `./data/` directory. These datasets are not publicly available, except where noted.
     - **Orbis dataset**
         - data_sets.pkl
