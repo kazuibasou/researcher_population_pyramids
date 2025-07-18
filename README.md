@@ -22,8 +22,9 @@ The code has been tested and confirmed to work in the following environment:
 ## Operating System
 - macOS 14.4
 
-# Usage
-0. Clone this repository:
+# Build
+
+Clone this repository:
 ```
 git clone git@github.com:kazuibasou/researcher_population_pyramids.git
 ```
@@ -37,6 +38,8 @@ Run the following command:
 ```
 mkdir data figs
 ```
+
+# Usage
 
 1. Ensure that the following datasets are placed in the `./data/` directory. These datasets are not publicly available, except where noted.
     - **Orbis dataset**
