@@ -41,16 +41,16 @@ mkdir data figs
 
 # Usage
 
-1. Ensure that the following datasets are placed in the `./data/` directory. These datasets are not publicly available, except where noted.
+1. Ensure that the following datasets are placed in the `./data/` directory.
     - **Orbis dataset**
         - data_sets.pkl
-        - This file was extracted from a snapshot of the [Orbis database](https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html) (a subscription-based commercial database). Please contact us to obtain access to this file privately.
+        - This file was extracted from a snapshot of the [Orbis database](https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html) (a subscription-based commercial database). 
     - **World Gender Name Dictionary (WGND)**
         - wgnd_2_0_sources.csv
         - Download from: https://tind.wipo.int/record/49408?ln=en&v=zip
     - **OpenAlex authors by country**
         - author_sample_lst_middle_name_False_last_name_False_special_chars_True.pkl
-        - This file was extracted from a snapshot of the [OpenAlex database](https://openalex.org/) (a fully open bibliographic database). Please contact us to obtain access to this file privately.
+        - This file was extracted from a snapshot of the [OpenAlex database](https://openalex.org/) (a fully open bibliographic database).
 2. Run all cells in the notebook `gender_inference.ipynb` to train the Complement Naive Bayes classifier for each country.
 3. Run all cells in `openalex_gender_assignment.ipynb` to assign binary gender to OpenAlex authors based on the trained classifier.
 4. Run all cells in `calc_productive_pyramids.ipynb` to construct researcher population pyramids by country.
