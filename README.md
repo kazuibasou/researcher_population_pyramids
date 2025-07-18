@@ -1,5 +1,6 @@
 # README
-This document explains how to reproduce the data processing, figures, and tables presented in the following manuscript:
+
+This document explains how to reproduce the results, figures, and tables presented in the following manuscript:
 
 **Kazuki Nakajima and Takayuki Mizuno.** *Researcher Population Pyramids for Tracking Global Demographic and Gender Trajectories*. 2025.
 
@@ -8,6 +9,7 @@ This document explains how to reproduce the data processing, figures, and tables
 The code has been tested and confirmed to work in the following environment:
 
 ## Python and Required Libraries
+
 - Python 3.10.15
 - ftfy==6.3.1
 - matplotlib==3.10.3
@@ -20,6 +22,7 @@ The code has been tested and confirmed to work in the following environment:
 - Unidecode==1.3.8
 
 ## Operating System
+
 - macOS 14.4
 
 # Build
@@ -41,23 +44,26 @@ mkdir data figs
 
 # Usage
 
-1. Ensure that the following datasets are placed in the `./data/` directory.
-    - **Orbis dataset**
+1. Ensure that the following datasets are placed in the `researcher_population_pyramids/data/` directory. 
+    - **Orbis data**
         - data_sets.pkl
-        - This file was extracted from a snapshot of the [Orbis database](https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html) (a subscription-based commercial database). 
+            - This file was extracted from a snapshot of the [Orbis database](https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html) (a subscription-based commercial database). 
     - **World Gender Name Dictionary (WGND)**
         - wgnd_2_0_sources.csv
-        - Download from: https://tind.wipo.int/record/49408?ln=en&v=zip
-    - **OpenAlex authors by country**
-        - author_sample_lst_middle_name_False_last_name_False_special_chars_True.pkl
-        - This file was extracted from a snapshot of the [OpenAlex database](https://openalex.org/) (a fully open bibliographic database).
-2. Run all cells in the notebook `gender_inference.ipynb` to train the Complement Naive Bayes classifier for each country.
-3. Run all cells in `openalex_gender_assignment.ipynb` to assign binary gender to OpenAlex authors based on the trained classifier.
-4. Run all cells in `calc_productive_pyramids.ipynb` to construct researcher population pyramids by country.
-5. Run all cells in `make_figs.ipynb` to generate the figures included in the manuscript.
-6. Run all cells in `make_tables.ipynb` to generate the tables included in the manuscript.
+            - Download from: https://tind.wipo.int/record/49408?ln=en&v=zip
+    - **OpenAlex data**
+        - openalex_affiliation_to_country.pickle
+        - openalex_author_name.pickle
+        - openalex_work_data.pickle
+            - These files were extracted from its September, 2024 snapshot of the [OpenAlex database](https://openalex.org/) (a fully open bibliographic database).
+2. Run all cells in the notebook `gender_inference.ipynb` sequentially to train the Complement Naive Bayes classifier for each country.
+3. Run all cells in `openalex_gender_assignment.ipynb` sequentially to assign binary gender to OpenAlex authors based on the trained classifier.
+4. Run all cells in `calc_productive_pyramids.ipynb` sequentially to construct researcher population pyramids by country.
+5. Run all cells in `make_figs.ipynb` sequentially to generate the figures included in the manuscript.
+6. Run all cells in `make_tables.ipynb` sequentially to generate the tables included in the manuscript.
 
 # Notes
+- Due to the large size of the raw bibliographic data and licensing restrictions for the Orbis dataset, the full dataset cannot be publicly shared (therefore, the `data` directory is empty here). However, a curated version of the data sufficient to reproduce the results, figures, and tables presented in our manuscript can be made available privately upon reasonable request to the authors, provided that applicable data use agreements and licensing terms are met.
 - All computations were performed on a 2019 Mac Pro. Generating the complete set of numerical results took several days.
-- Figures of population pyramids for all 58 countries analyzed in our study can be found in the `./figs/` directory.
+- Figures of population pyramids in 2023 for all 58 countries analyzed in our study can be found at the `./figs/` directory.
 
