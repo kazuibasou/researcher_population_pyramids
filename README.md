@@ -44,7 +44,7 @@ mkdir data figs
 
 # Usage
 
-1. Ensure that the following datasets are placed in the `researcher_population_pyramids/data/` directory. Due to the large size of the raw bibliographic data and licensing restrictions for the Orbis dataset, the full dataset cannot be publicly shared (therefore, the `data` directory is empty here). However, a curated version of the data sufficient to reproduce the results, figures, and tables presented in our manuscript can be made available privately upon reasonable request to the authors, provided that applicable data use agreements and licensing terms are met.
+1. Ensure that the following datasets are placed in the `researcher_population_pyramids/data/` directory. Due to the large size of the raw OpenAlex data and licensing restrictions for the Orbis data, the full dataset cannot be publicly shared (therefore, the `data` directory is empty here). However, a curated version of the data sufficient to reproduce the results, figures, and tables presented in our manuscript can be made available privately upon reasonable request to the authors, provided that applicable data use agreements and licensing terms are met.
     - **Orbis data**
         - data_sets.pkl
             - This file was extracted from a snapshot of the [Orbis database](https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html) (a subscription-based commercial database). 
