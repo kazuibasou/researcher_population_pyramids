@@ -1,5 +1,4 @@
 <h1 align="center">
-Researcher Population Pyramid Framework <br/>  
 <i>Researcher Population Pyramids for Tracking Global Demographic and Gender Trajectories</i>
 </h1>
 
@@ -43,6 +42,7 @@ The code has been tested and confirmed to work in the following environment:
 
 - macOS 14.4
 
+
 # Build
 
 1. Clone this repository:
@@ -73,15 +73,16 @@ This generates the following structure of the directory.
        ├ data/
        └ figs/
 
-The `framework` directory provides a set of code to construct and visualize researcher population pyramids for various countries, based on author and publication data extracted from some bibliographic database (e.g., [OpenAlex](https://openalex.org/) and [DBLP](https://dblp.org/)). 
+The `framework` directory provides a set of code to construct and visualize researcher population pyramids for various countries, based on author and publication data extracted from some bibliographic database (e.g., [OpenAlex](https://openalex.org/)). 
 It is designed for general application and further development of the framework.
 
 The `reproduction` directory contains the code necessary to reproduce the results, figures, and tables presented in our manuscript. 
 Please note that full reproduction requires access to the proprietary, restricted-access data used in our study.
 
+
 # Usage of the framework
 
-(To be written.)
+(To be written)
 
 
 # Reproduce our results
@@ -91,7 +92,7 @@ Please note that full reproduction requires access to the proprietary, restricte
 cd researcher_population_pyramids/reproduction
 ```
 
-1. Ensure that the following datasets are placed in the `researcher_population_pyramids/data/` directory. Due to the large size of the raw OpenAlex data and licensing restrictions for the Orbis data, the full dataset cannot be publicly shared (therefore, the `data` directory is empty here). However, a curated version of the data sufficient to reproduce the results, figures, and tables presented in our manuscript can be made available privately upon reasonable request to the authors, provided that applicable data use agreements and licensing terms are met.
+1. Ensure that the following datasets are placed in the `researcher_population_pyramids/reproduction/data/` directory. Due to the large size of the raw OpenAlex data and licensing restrictions for the Orbis data, the full dataset cannot be publicly shared (therefore, the `researcher_population_pyramids/reproduction/data` directory is empty here). However, a curated version of the data sufficient to reproduce the results, figures, and tables presented in our manuscript can be made available privately upon reasonable request to the authors, provided that applicable data use agreements and licensing terms are met.
     - **Orbis data**
         - data_sets.pkl
             - This file was extracted from its April, 2024 snapshot of the [Orbis database](https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html) (a subscription-based commercial database). 
@@ -104,15 +105,15 @@ cd researcher_population_pyramids/reproduction
         - openalex_work_data.pickle
             - These files were extracted from its September, 2024 snapshot of the [OpenAlex database](https://openalex.org/) (a fully open bibliographic database).
 
-2. Run all cells in the notebook `gender_inference.ipynb` sequentially to train the Complement Naive Bayes classifier for each country.
+2. Run all cells in the notebook `researcher_population_pyramids/reproduction/gender_inference.ipynb` sequentially to train the Complement Naive Bayes classifier for each country.
 
-3. Run all cells in `openalex_gender_assignment.ipynb` sequentially to assign binary gender to OpenAlex authors based on the trained classifier.
+3. Run all cells in `researcher_population_pyramids/reproduction/openalex_gender_assignment.ipynb` sequentially to assign binary gender to OpenAlex authors based on the trained classifier.
 
-4. Run all cells in `calc_productive_pyramids.ipynb` sequentially to construct researcher population pyramids by country.
+4. Run all cells in `researcher_population_pyramids/reproduction/calc_population_pyramids.ipynb` sequentially to construct researcher population pyramids by country.
 
-5. Run all cells in `make_figs.ipynb` sequentially to generate the figures included in the manuscript.
+5. Run all cells in `researcher_population_pyramids/reproduction/make_figs.ipynb` sequentially to generate the figures included in the manuscript.
 
-6. Run all cells in `make_tables.ipynb` sequentially to generate the tables included in the manuscript.
+6. Run all cells in `researcher_population_pyramids/reproduction/make_tables.ipynb` sequentially to generate the tables included in the manuscript.
 
 ## Notes
 - All computations were performed on a 2019 Mac Pro. Generating the complete set of numerical results took several days.
