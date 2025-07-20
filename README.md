@@ -102,7 +102,7 @@ Field Descriptions:
     - ``0`` indicates female.
     - ``1`` indicates male.
     - Note: As mentioned in the manuscript, our framework is based on a binary conception of gender and does not capture the full spectrum of gender identities.
-- ``pub_date_lst``: A list of the publication dates of the author's papers. Each publication date should be a string in the format ``yyyy-mm-dd``.
+- ``pub_date_lst``: A list of the publication dates of the author's papers. Each publication date must be a string in the format ``yyyy-mm-dd``.
 
 For a complete example of this format, please refer to the ``author_sample_lst.jsonl`` file located within the ``researcher_population_pyramids/framework/data/`` directory of this repository.
 
