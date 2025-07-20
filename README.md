@@ -108,13 +108,13 @@ For a complete example of this format, please refer to the ``author_sample_lst.j
 
 For author and publication data, for example, you may use [OpenAlex](https://openalex.org/). 
 To infer the gender of an author, for example, you may use an open-source classifier called [CCT classifier](https://github.com/ianvanbuskirk/nomquamgender) that estimates the gender of a first name. 
-(Note: While our manuscript primarily used a custom Complement Naive Bayes classifier, the CCT classifier offers a robust open-source alternative for gender inference.) 
-We provide the tuned threshold values for the nqg classifier based on benchmark data from 61 countries, in the `researcher_population_pyramids/framework/data/` directory of this repository (see the file `cct_prob_threshold.json`). 
+(Note: While our manuscript primarily used a custom Complement Naive Bayes classifier, the CCT classifier offers an open-source alternative for gender inference.) 
+We provide the tuned threshold values for the CCT classifier based on benchmark data from 61 countries, in the `researcher_population_pyramids/framework/data/` directory of this repository (see the file `cct_prob_threshold.json`). 
 For more details, please refer to Section S1 of the supplementary information in our manuscript.
 
 ## Constructing researcher population pyramids
 
-Please see the notebook [construct_population_pyramids.ipynb](https://github.com/kazuibasou/researcher_population_pyramids/blob/main/py/construct_population_pyramids.ipynb) in the folder ``researcher_population_pyramids/framework/`` for instructions on using the framework in Python.
+Please see the notebook [construct_population_pyramids.ipynb](https://github.com/kazuibasou/researcher_population_pyramids/blob/main/framework/construct_population_pyramids.ipynb) in the folder ``researcher_population_pyramids/framework/`` for instructions on using the framework in Python.
 
 # Reproduce our results
 
