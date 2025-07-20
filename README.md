@@ -57,10 +57,9 @@ cd researcher_population_pyramids
 
 3. Run the following commands sequentially:
 ```
+mkdir -p ./framework/figs
 mkdir -p ./reproduction/data
 mkdir -p ./reproduction/figs
-mkdir -p ./framework/data
-mkdir -p ./framework/figs
 ```
 
 This generates the following structure of the directory.
@@ -82,17 +81,49 @@ Please note that full reproduction requires access to the proprietary, restricte
 
 # Usage of the framework
 
-(To be written)
+## Input file
 
+To utilize the framework, you need to provide a sample of authors for a single country in a specific JSON Lines (JSONL) format. 
+The main input file, which should be named `author_sample_lst.jsonl`, must be placed in the `researcher_population_pyramids/framework/data/` directory.
+
+Each line in this file corresponds to an author's data. 
+The format adheres to the following structure:
+
+```jsonl
+{"id": "author_id_1", "gender": 0, "pub_date_lst": ["yyyy-mm-dd", "yyyy-mm-dd", ...]}
+{"id": "author_id_2", "gender": 1, "pub_date_lst": ["yyyy-mm-dd", "yyyy-mm-dd", ...]}
+...
+```
+
+Field Descriptions:
+
+- ``id``: A unique identifier for the author. This can be any string type (no other requirements).
+- ``gender``: The inferred gender label for the author (integer type).
+    - ``0`` indicates female.
+    - ``1`` indicates male.
+    - Note: As mentioned in the manuscript, our framework is based on a binary conception of gender and does not capture the full spectrum of gender identities.
+- ``pub_date_lst``: A list of the publication dates of the author's papers. Each publication date should be a string in the format ``yyyy-mm-dd``.
+
+For a complete example of this format, please refer to the ``author_sample_lst.jsonl`` file located within the ``researcher_population_pyramids/framework/data/`` directory of this repository.
+
+For author and publication data, for example, you may use [OpenAlex](https://openalex.org/). 
+To infer the gender of an author, for example, you may use an open-source classifier called [CCT classifier](https://github.com/ianvanbuskirk/nomquamgender) that estimates the gender of a first name. 
+(Note: While our manuscript primarily used a custom Complement Naive Bayes classifier, the CCT classifier offers a robust open-source alternative for gender inference.) 
+We provide the tuned threshold values for the nqg classifier based on benchmark data from 61 countries, in the `researcher_population_pyramids/framework/data/` directory of this repository (see the file `cct_prob_threshold.json`). 
+For more details, please refer to Section S1 of the supplementary information in our manuscript.
+
+## Constructing researcher population pyramids
+
+Please see the notebook [construct_population_pyramids.ipynb](https://github.com/kazuibasou/researcher_population_pyramids/blob/main/py/construct_population_pyramids.ipynb) in the folder ``researcher_population_pyramids/framework/`` for instructions on using the framework in Python.
 
 # Reproduce our results
 
-0. Run the following command:
+1. Run the following command:
 ```
 cd researcher_population_pyramids/reproduction
 ```
 
-1. Ensure that the following datasets are placed in the `researcher_population_pyramids/reproduction/data/` directory. Due to the large size of the raw OpenAlex data and licensing restrictions for the Orbis data, the full dataset cannot be publicly shared (therefore, the `researcher_population_pyramids/reproduction/data` directory is empty here). However, a curated version of the data sufficient to reproduce the results, figures, and tables presented in our manuscript can be made available privately upon reasonable request to the authors, provided that applicable data use agreements and licensing terms are met.
+2. Ensure that the following datasets are placed in the `researcher_population_pyramids/reproduction/data/` directory. Due to the large size of the raw OpenAlex data and licensing restrictions for the Orbis data, the full dataset cannot be publicly shared (therefore, the `researcher_population_pyramids/reproduction/data` directory is empty here).
     - **Orbis data**
         - data_sets.pkl
             - This file was extracted from its April, 2024 snapshot of the [Orbis database](https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html) (a subscription-based commercial database). 
@@ -105,15 +136,15 @@ cd researcher_population_pyramids/reproduction
         - openalex_work_data.pickle
             - These files were extracted from its September, 2024 snapshot of the [OpenAlex database](https://openalex.org/) (a fully open bibliographic database).
 
-2. Run all cells in the notebook `researcher_population_pyramids/reproduction/gender_inference.ipynb` sequentially to train the Complement Naive Bayes classifier for each country.
+3. Run all cells in the notebook `researcher_population_pyramids/reproduction/gender_inference.ipynb` sequentially to train the Complement Naive Bayes classifier for each country.
 
-3. Run all cells in `researcher_population_pyramids/reproduction/openalex_gender_assignment.ipynb` sequentially to assign binary gender to OpenAlex authors based on the trained classifier.
+4. Run all cells in `researcher_population_pyramids/reproduction/openalex_gender_assignment.ipynb` sequentially to assign binary gender to OpenAlex authors based on the trained classifier.
 
-4. Run all cells in `researcher_population_pyramids/reproduction/calc_population_pyramids.ipynb` sequentially to construct researcher population pyramids by country.
+5. Run all cells in `researcher_population_pyramids/reproduction/construct_population_pyramids.ipynb` sequentially to construct researcher population pyramids by country.
 
-5. Run all cells in `researcher_population_pyramids/reproduction/make_figs.ipynb` sequentially to generate the figures included in the manuscript.
+6. Run all cells in `researcher_population_pyramids/reproduction/make_figs.ipynb` sequentially to generate the figures included in the manuscript.
 
-6. Run all cells in `researcher_population_pyramids/reproduction/make_tables.ipynb` sequentially to generate the tables included in the manuscript.
+7. Run all cells in `researcher_population_pyramids/reproduction/make_tables.ipynb` sequentially to generate the tables included in the manuscript.
 
 ## Notes
 - All computations were performed on a 2019 Mac Pro. Generating the complete set of numerical results took several days.
