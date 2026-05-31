@@ -31,7 +31,7 @@
       <footer class="site-footer">
         <div>
           Data &amp; method:
-          <a href="https://doi.org/10.1093/pnasnexus/pgag059" target="_blank" rel="noopener">K. Nakajima and T. Mizuno (2026), PNAS Nexus</a>.
+          <a href="https://doi.org/10.1093/pnasnexus/pgag059" target="_blank" rel="noopener">Kazuki Nakajima and Takayuki Mizuno (2026), PNAS Nexus</a>.
           Gender inference via
           <a href="https://doi.org/10.1609/icwsm.v17i1.22195" target="_blank" rel="noopener">nomquamgender</a>.
         </div>

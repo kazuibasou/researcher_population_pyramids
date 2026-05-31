@@ -20,7 +20,7 @@ evolve from 1970 through projections to 2050.
 [kazuibasou.github.io/researcher_population_pyramids](https://kazuibasou.github.io/researcher_population_pyramids/)
 
 **Paper:**
-K. Nakajima and T. Mizuno (2026).
+Kazuki Nakajima and Takayuki Mizuno (2026).
 *Researcher population pyramids: Tracking demographic and gender trajectories
 across countries*. PNAS Nexus 5(3), pgag059.
 [doi.org/10.1093/pnasnexus/pgag059](https://doi.org/10.1093/pnasnexus/pgag059)
