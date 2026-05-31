@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trends — Researcher Population Pyramids</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/styles/choices.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/scripts/choices.min.js"></script>
+</head>
+<body data-page="trends">
+  <div id="site-header"></div>
+
+  <main>
+    <div class="controls">
+      <div class="control" style="flex: 1 1 360px; min-width: 360px;">
+        <label for="countries-select">Countries</label>
+        <select id="countries-select" aria-label="Countries" multiple></select>
+      </div>
+      <div class="control">
+        <label for="metric-select">Metric</label>
+        <select id="metric-select" aria-label="Metric">
+          <option value="women_ratio" selected>Proportion of female active authors</option>
+          <option value="total">Number of active authors</option>
+          <option value="women">Number of female active authors</option>
+          <option value="men">Number of male active authors</option>
+        </select>
+      </div>
+      <div class="control compact" style="min-width: 90px;">
+        <label for="year-min">From</label>
+        <input type="number" id="year-min" min="1970" max="2050" value="2000"
+               aria-label="From year">
+      </div>
+      <div class="control compact" style="min-width: 90px;">
+        <label for="year-max">To</label>
+        <input type="number" id="year-max" min="1970" max="2050" value="2050"
+               aria-label="To year">
+      </div>
+      <div class="control compact">
+        <label for="yscale-select">Y scale</label>
+        <select id="yscale-select" aria-label="Y scale">
+          <option value="linear">Linear</option>
+          <option value="log" selected>Log</option>
+        </select>
+      </div>
+      <div class="control" style="min-width: 0; align-self: flex-end;">
+        <button id="btn-download"
+                style="font-family: var(--font-stack); font-size: 14px; padding: 0 16px;
+                       border: 1px solid var(--color-border); border-radius: 4px;
+                       background: white; cursor: pointer; height: var(--control-height);
+                       box-sizing: border-box;">
+          Download CSV
+        </button>
+      </div>
+    </div>
+
+    <div id="trends-plot"></div>
+
+    <p class="text-small muted" style="margin-top: 12px;">
+      Each line shows one country&rsquo;s value at each publication year
+      between <span id="year-range-text">2000 and 2050</span>. Active authors
+      are counted from the population pyramids; years 2024–2050 are projected
+      from the 2023 pyramid and shown over a shaded background.
+      See <a href="https://doi.org/10.1093/pnasnexus/pgag059" target="_blank" rel="noopener">our paper</a> for details.
+    </p>
+    <p class="text-small muted" style="margin-top: 8px;">
+      Note: these author counts are derived from the active author counts in
+      the population pyramids and differ from those in Fig. 1 of our paper,
+      which count unique authors with at least one publication in a given
+      year.
+    </p>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/common.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/trends.js"></script>
+</body>
+</html>

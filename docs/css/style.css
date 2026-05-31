@@ -1,0 +1,367 @@
+/* Researcher Population Pyramids — global styles */
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-border: #d9d9d9;
+  --color-accent: #2c5282;
+  --color-female: #2f7a3a;    /* darkgreen, paper-faithful */
+  --color-male: #ed8936;      /* orange, paper-faithful */
+  --color-projection-bg: #f0f0f5;
+  --max-width: 1100px;
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-stack);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a { color: var(--color-accent); }
+a:hover { text-decoration: underline; }
+
+/* ----- Layout ----- */
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.site-header .brand {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.site-header nav { display: flex; gap: 18px; flex-wrap: wrap; }
+.site-header nav a {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 14px;
+}
+.site-header nav a:hover { color: var(--color-text); }
+.site-header nav a.active { color: var(--color-text); font-weight: 600; }
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 24px;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.site-footer a { color: var(--color-muted); }
+
+/* ----- Controls row (country + domain pickers) ----- */
+
+.controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 8px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+}
+
+.control.compact { min-width: 110px; }
+.control.compact select { min-width: 110px; }
+
+/* Number inputs (Trends year range, etc.) — match select styling. */
+.control input[type="number"] {
+  font-family: var(--font-stack);
+  font-size: 15px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: white;
+  height: var(--control-height);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.control label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+/* Unified height for native <select> and Choices.js-wrapped <select>.
+   Choices.js replaces the native select with a .choices > .choices__inner
+   container, so we have to size both explicitly. */
+:root { --control-height: 42px; }
+
+.control select {
+  font-family: var(--font-stack);
+  font-size: 15px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: white;
+  height: var(--control-height);
+  box-sizing: border-box;
+}
+
+.choices { margin-bottom: 0; min-width: 280px; }
+.choices__inner {
+  min-height: var(--control-height);
+  height: var(--control-height);
+  padding: 0 10px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: white;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+.choices__list--single {
+  padding: 0;
+  margin: 0;
+  line-height: var(--control-height);
+}
+.choices__list--single .choices__item {
+  padding: 0 24px 0 0;
+  margin: 0;
+  line-height: var(--control-height);
+  display: inline-block;
+  vertical-align: top;
+  transform: translateY(-2px);
+}
+.choices[data-type*=select-one]::after { right: 14px; }
+
+/* ----- Pyramid plot area ----- */
+
+#pyramid {
+  width: 100%;
+  height: 560px;
+  margin: 12px 0 24px 0;
+}
+
+/* ----- Trends plot area ----- */
+
+#trends-plot {
+  width: 100%;
+  height: 540px;
+  margin: 12px 0 24px 0;
+}
+
+/* ----- Comparison plot area ----- */
+
+#comparison-plot {
+  width: 100%;
+  height: 560px;
+  margin: 12px 0 24px 0;
+}
+
+/* Multi-select Choices.js needs to allow growth above --control-height */
+.choices[data-type*=select-multiple] .choices__inner {
+  height: auto;
+  min-height: var(--control-height);
+  padding: 6px 8px 2px 8px;
+}
+.choices[data-type*=select-multiple] .choices__list--multiple { margin: 0; }
+.choices[data-type*=select-multiple] .choices__list--multiple .choices__item {
+  font-size: 13px;
+  padding: 3px 8px;
+  margin: 2px 4px 2px 0;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  border-radius: 4px;
+}
+
+.pyramid-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.pyramid-meta strong { color: var(--color-text); }
+
+/* ----- Year slider + animation controls ----- */
+
+.year-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.year-slider-wrap {
+  flex: 1 1 380px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#year-slider {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e5e5e5;
+  border-radius: 3px;
+  outline: none;
+}
+
+#year-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+}
+
+#year-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: 0;
+}
+
+.year-label {
+  font-size: 20px;
+  font-weight: 600;
+  /* Wide enough to always fit "YYYY [PROJECTION]" so the slider next to it
+     does not change width as we cross the historical/projection boundary. */
+  min-width: 180px;
+  text-align: center;
+}
+
+.year-label.is-projection {
+  color: var(--color-accent);
+}
+
+.year-label .projection-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  background: var(--color-accent);
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.year-buttons { display: flex; gap: 6px; align-items: center; }
+
+.year-buttons button {
+  font-family: var(--font-stack);
+  font-size: 14px;
+  padding: 6px 10px;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 38px;
+}
+
+.year-buttons button:hover { background: #f5f5f5; }
+.year-buttons button.is-active { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+.year-buttons .speed-group { display: flex; align-items: center; gap: 6px; padding-left: 12px; border-left: 1px solid var(--color-border); }
+.year-buttons .speed-group label { font-size: 12px; color: var(--color-muted); }
+
+/* ----- Section blocks ----- */
+
+.section { margin: 32px 0; }
+.section h1 { font-size: 28px; margin: 0 0 16px 0; }
+.section h2 { font-size: 22px; margin: 32px 0 10px 0; }
+.section h3 { font-size: 17px; margin: 20px 0 8px 0; }
+.section p { color: var(--color-text); margin: 8px 0 12px 0; }
+.section ul { margin: 8px 0 16px 0; padding-left: 24px; }
+.section li { margin: 4px 0; }
+
+/* Citation card with copy button */
+.citation-block {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  background: #fafafa;
+  margin: 12px 0 20px 0;
+}
+.citation-block .citation-text {
+  margin: 0 0 12px 0;
+  line-height: 1.55;
+}
+.bibtex {
+  position: relative;
+  background: #1e1e1e;
+  color: #e6e6e6;
+  font-family: "SF Mono", Menlo, Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  padding: 14px 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 8px 0 0 0;
+  white-space: pre;
+}
+.bibtex .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--font-stack);
+  font-size: 12px;
+  padding: 4px 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #2d2d2d;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+.bibtex .copy-btn:hover { background: #3a3a3a; }
+.bibtex .copy-btn.copied { background: #2f7a3a; border-color: #2f7a3a; }
+
+/* ----- Mobile portrait warning ----- */
+
+.rotate-notice {
+  display: none;
+  padding: 24px;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+@media (max-width: 640px) and (orientation: portrait) {
+  main, .site-header nav { display: none; }
+  .rotate-notice { display: block; }
+}
+
+/* ----- Utility ----- */
+
+.muted { color: var(--color-muted); }
+.text-small { font-size: 13px; }
+.hidden { display: none !important; }

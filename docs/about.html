@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Researcher Population Pyramids</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="section">
+      <h1>About</h1>
+      <p>
+        This site provides an interactive view of researcher demographics
+        and gender balance across 58 countries, based on the population
+        pyramid framework introduced in our paper
+        (<a href="https://doi.org/10.1093/pnasnexus/pgag059" target="_blank" rel="noopener">K. Nakajima and T. Mizuno (2026), <em>PNAS Nexus</em></a>).
+        The full methodology is described in the paper; this page summarizes
+        what each view shows, defines the key terms, and lists interpretive
+        caveats.
+      </p>
+      <p>
+        The site has three visualizations:
+      </p>
+      <ul>
+        <li>
+          <strong><a href="index.html">Pyramid</a></strong>: the researcher
+          population pyramid for a chosen country, year, and research domain
+          — active authors of each gender plotted by their cumulative
+          productivity.
+        </li>
+        <li>
+          <strong><a href="trends.html">Trends</a></strong>: time series of
+          active-author counts and the proportion of female active authors
+          for selected countries.
+        </li>
+        <li>
+          <strong><a href="comparison.html">Comparison</a></strong>: every
+          country positioned by its researcher inflow against its gender gap
+          in cumulative productivity at a chosen year.
+        </li>
+      </ul>
+      <p>
+        Years 2024–2050 are projected from the 2023 pyramid (see <a href="#projection">Projection</a> below).
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>How to cite</h2>
+      <p>If you use the figures, data, or interface here in your work, please cite the paper:</p>
+
+      <div class="citation-block">
+        <p class="citation-text">
+          K. Nakajima and T. Mizuno (2026).
+          Researcher population pyramids: Tracking demographic and gender
+          trajectories across countries.
+          <em>PNAS Nexus</em>, <strong>5</strong>(3), pgag059.
+          <a href="https://doi.org/10.1093/pnasnexus/pgag059" target="_blank" rel="noopener">https://doi.org/10.1093/pnasnexus/pgag059</a>
+        </p>
+        <div class="bibtex" id="bibtex">
+<button class="copy-btn" id="bibtex-copy">Copy</button>@article{Nakajima2026PopulationPyramids,
+  title   = {Researcher population pyramids: Tracking demographic and
+             gender trajectories across countries},
+  author  = {Nakajima, Kazuki and Mizuno, Takayuki},
+  journal = {PNAS Nexus},
+  volume  = {5},
+  number  = {3},
+  pages   = {pgag059},
+  year    = {2026},
+  doi     = {10.1093/pnasnexus/pgag059}
+}</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Key concepts</h2>
+
+      <h3>Active author</h3>
+      <p>
+        For each country and gender, we set an inter-publication interval
+        threshold as the largest inter-publication interval (in years) at
+        which the survival probability remains above 2&percnt;. An author is
+        considered <em>active</em> in a given year if their most recent
+        publication on or before that year falls within this threshold of
+        the year&rsquo;s end. Authors who do not meet this criterion are
+        considered <em>inactive</em>.
+      </p>
+      <p>
+        In addition, an author is included in our pyramids only if (i) they
+        have published at least one paper by that year, (ii) the duration
+        between their first publication and the end of that year does not
+        exceed 40 years, and (iii) their total number of publications by
+        that year is at most 500 (approximately the top 0.1&percnt; of
+        authors in our data).
+      </p>
+
+      <h3>Cumulative productivity</h3>
+      <p>
+        For each active author, cumulative productivity is the length of
+        their most recent, uninterrupted sequence of publications. The count
+        starts at 1 with the first publication and increases by one with
+        each subsequent publication whose gap from the previous one does
+        not exceed the inter-publication interval threshold; an interval
+        exceeding the threshold restarts the count at 1 with the next
+        publication.
+      </p>
+
+      <h3>Researcher inflow</h3>
+      <p>
+        Researcher inflow in a given year is the proportion of newly active
+        authors — those who were inactive the previous year but become
+        active that year — among all active authors.
+      </p>
+
+      <h3>Gender gap in cumulative productivity</h3>
+      <p>
+        The gender gap in cumulative productivity is defined as the mean
+        cumulative productivity of female active authors minus that of male
+        active authors, normalized by the male mean.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Data</h2>
+      <p>
+        Publication and author records are from the September 27, 2024
+        snapshot of
+        <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a>,
+        from which we extracted publications classified as &ldquo;articles&rdquo;
+        and published between 1950 and 2023. For each author, a primary
+        country (or countries) of affiliation is assigned as the most
+        frequent country among their affiliations. Authors are kept only
+        when their primary country of affiliation is unique.
+      </p>
+      <p>
+        The 58 countries are those for which the paper&rsquo;s Complement
+        Naive Bayes classifier achieved an area under the receiver operating
+        characteristic curve (AUC) of at least 0.8 on both the
+        <a href="https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html" target="_blank" rel="noopener">Orbis</a>
+        executive database and the
+        <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MSEGSJ" target="_blank" rel="noopener">World Gender Name Dictionary</a>
+        benchmarks. The classifier takes the first space-separated token of
+        an author&rsquo;s full name (assumed to be the first name) together
+        with their country and outputs a binary gender; the gender is
+        assigned only when the classifier&rsquo;s confidence exceeds a
+        country-specific threshold.
+      </p>
+      <p>
+        Bangladesh, China, India, and South Korea are not included due to
+        insufficient classifier accuracy on the WGND benchmark. This is
+        partially consistent with recent work demonstrating that the error
+        rates of name-based gender inference are not uniformly distributed
+        (<a href="https://doi.org/10.1038/s41562-023-01587-9" target="_blank" rel="noopener">J. W. Lockhart, M. M. King, and C. Munsch (2023), <em>Nature Human Behaviour</em></a>).
+      </p>
+      <p>
+        <strong>Note on the classifier.</strong>
+        The 58 countries listed above are those validated in the paper using a
+        Complement Naive Bayes classifier. This site applies the open-source
+        nomquamgender classifier
+        (<a href="https://doi.org/10.1609/icwsm.v17i1.22195" target="_blank" rel="noopener">I. Van Buskirk, A. Clauset, and D. B. Larremore (2023), <em>ICWSM</em></a>)
+        using the country-specific confidence thresholds shown in the paper&rsquo;s
+        Supplementary Information. Numerical values on this site may therefore
+        differ from those reported in the paper at the country level.
+      </p>
+      <p>
+        The Pyramid page also allows filtering by one of
+        <a href="https://help.openalex.org/hc/en-us/articles/24736129405719-Topics" target="_blank" rel="noopener">OpenAlex&rsquo;s four top-level research domains</a>
+        (Health Sciences, Life Sciences, Physical Sciences, and Social
+        Sciences). An author contributes to a domain only if all of their
+        publications fall within that domain; authors spanning multiple
+        domains are counted only in &ldquo;Overall&rdquo;.
+      </p>
+    </section>
+
+    <section class="section" id="projection">
+      <h2>Projection</h2>
+      <p>
+        The population pyramid for years beyond 2023 is propagated forward
+        from the 2023 pyramid using the transition probabilities of
+        cumulative productivity observed between 2022 and 2023 together
+        with the newly active author counts at 2023. Under a stationarity
+        assumption, these are held fixed and applied iteratively to obtain
+        projected pyramids for every year up to 2050.
+      </p>
+      <p>
+        This deterministic projection serves as a baseline scenario
+        illustrating long-term demographic trajectories if 2023 conditions
+        were to persist. It does not account for cohort aging, policy
+        shifts, or external shocks, and the resulting projections should be
+        interpreted as stylized illustrations of current momentum rather
+        than predictions.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Interpretive caveats</h2>
+      <ul>
+        <li>
+          A career interruption that exceeds the inter-publication interval
+          threshold (e.g., due to parenthood) resets the cumulative
+          productivity count to one. This may shape the interpretation of
+          gender gaps in cumulative productivity.
+        </li>
+        <li>
+          Gender is treated as binary (female or male) inferred from first
+          names. This approach cannot account for individuals who identify
+          as non-binary, transgender, or otherwise gender-diverse, and is an
+          imperfect proxy for gender identity.
+        </li>
+        <li>
+          Gender assignment rates — the proportion of unique authors for
+          whom a binary gender was inferred with high confidence — vary
+          considerably across countries. For countries with lower rates the
+          gender-assigned subset may not be representative of the entire
+          researcher population.
+        </li>
+        <li>
+          Projections to 2050 are based on a strong stationarity assumption
+          that the inflow in 2023 and the transition patterns observed
+          between 2022 and 2023 remain constant in the future.
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Data and code</h2>
+      <ul>
+        <li>
+          <strong>Source code &amp; pipeline:</strong>
+          <a href="https://github.com/kazuibasou/researcher_population_pyramids" target="_blank" rel="noopener">
+            github.com/kazuibasou/researcher_population_pyramids
+          </a>
+          (MIT license).
+        </li>
+        <li>
+          <strong>Archived data release:</strong>
+          published via Zenodo on each tagged GitHub release.
+          A concept DOI will be linked here once the first release is cut.
+        </li>
+        <li>
+          <strong>Aggregated JSON used by this site:</strong> available under
+          <code>docs/data/</code> in the repository. Per-author records are
+          not redistributed.
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Contact</h2>
+      <p>
+        Questions, corrections, or suggestions are welcome via
+        <a href="https://github.com/kazuibasou/researcher_population_pyramids/issues" target="_blank" rel="noopener">GitHub issues</a>
+        or by writing to the corresponding author of the paper.
+      </p>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('bibtex-copy');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        const block = document.getElementById('bibtex');
+        // Grab the text content but strip the button's own label.
+        const text = block.innerText.replace(/^Copy\s*/, '');
+        navigator.clipboard.writeText(text).then(function () {
+          btn.classList.add('copied');
+          btn.textContent = 'Copied';
+          setTimeout(function () {
+            btn.classList.remove('copied');
+            btn.textContent = 'Copy';
+          }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

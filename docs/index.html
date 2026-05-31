@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Researcher Population Pyramids</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/styles/choices.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/scripts/choices.min.js"></script>
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <div class="controls">
+      <div class="control">
+        <label for="country-select">Country</label>
+        <select id="country-select" aria-label="Country"></select>
+      </div>
+      <div class="control">
+        <label for="domain-select">Research domain</label>
+        <select id="domain-select" aria-label="Research domain"></select>
+      </div>
+      <div class="control compact">
+        <label for="xmax-select">X-axis max</label>
+        <select id="xmax-select" aria-label="X-axis max">
+          <option value="3">10³</option>
+          <option value="4">10⁴</option>
+          <option value="5">10⁵</option>
+          <option value="6" selected>10⁶</option>
+          <option value="7">10⁷</option>
+        </select>
+      </div>
+      <div class="control compact">
+        <label for="ymax-select">Y-axis max</label>
+        <select id="ymax-select" aria-label="Y-axis max">
+          <option value="50">50</option>
+          <option value="100" selected>100</option>
+          <option value="150">150</option>
+          <option value="200">200</option>
+          <option value="300">300</option>
+          <option value="500">500</option>
+        </select>
+      </div>
+      <div class="control" style="min-width: 0; align-self: flex-end;">
+        <button id="btn-download"
+                style="font-family: var(--font-stack); font-size: 14px; padding: 0 16px;
+                       border: 1px solid var(--color-border); border-radius: 4px;
+                       background: white; cursor: pointer; height: var(--control-height);
+                       box-sizing: border-box;">
+          Download CSV
+        </button>
+      </div>
+    </div>
+
+    <div id="pyramid"></div>
+
+    <div class="year-controls">
+      <div class="year-slider-wrap">
+        <input id="year-slider" type="range" min="1970" max="2050" step="1" value="2023">
+        <span id="year-label" class="year-label">2023</span>
+      </div>
+      <div class="year-buttons">
+        <button id="btn-play" title="Play / pause">▶</button>
+        <button id="btn-reset" title="Reset to 2023">⟲</button>
+        <span class="speed-group">
+          <label>Speed</label>
+          <button data-speed="0.5">0.5×</button>
+          <button data-speed="1" class="is-active">1×</button>
+          <button data-speed="2">2×</button>
+          <button data-speed="4">4×</button>
+        </span>
+      </div>
+    </div>
+
+    <p class="text-small muted" style="margin-top: 12px;">
+      We computed the pyramids between 1970 and 2023 based on empirical
+      publication data extracted from OpenAlex; 2024–2050 are projected
+      based on the 2023 pyramids.
+      See <a href="https://doi.org/10.1093/pnasnexus/pgag059" target="_blank" rel="noopener">our paper</a> for details.
+    </p>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/common.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/pyramid.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comparison — Researcher Population Pyramids</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body data-page="comparison">
+  <div id="site-header"></div>
+
+  <main>
+    <div class="controls">
+      <div class="control compact" style="min-width: 150px;">
+        <label for="axis-mode-select">Axis range</label>
+        <select id="axis-mode-select" aria-label="Axis range">
+          <option value="auto" selected>Auto (per year)</option>
+          <option value="fixed">Fixed (all years)</option>
+        </select>
+      </div>
+      <div class="control" style="min-width: 0; align-self: flex-end;">
+        <button id="btn-download"
+                style="font-family: var(--font-stack); font-size: 14px; padding: 0 16px;
+                       border: 1px solid var(--color-border); border-radius: 4px;
+                       background: white; cursor: pointer; height: var(--control-height);
+                       box-sizing: border-box;">
+          Download CSV
+        </button>
+      </div>
+    </div>
+
+    <div id="comparison-plot"></div>
+
+    <div class="year-controls">
+      <div class="year-slider-wrap">
+        <input id="year-slider" type="range" min="1970" max="2050" step="1" value="2023">
+        <span id="year-label" class="year-label">2023</span>
+      </div>
+      <div class="year-buttons">
+        <button id="btn-play" title="Play / pause">▶</button>
+        <button id="btn-reset" title="Reset to default year">⟲</button>
+        <span class="speed-group">
+          <label>Speed</label>
+          <button data-speed="0.5">0.5×</button>
+          <button data-speed="1" class="is-active">1×</button>
+          <button data-speed="2">2×</button>
+          <button data-speed="4">4×</button>
+        </span>
+      </div>
+    </div>
+
+    <p class="text-small muted" style="margin-top: 12px;">
+      Each marker represents one country at the chosen year. The y-axis shows
+      the researcher inflow — the proportion of newly active authors among
+      all active authors affiliated with the country in that year. The x-axis
+      shows the gap in mean cumulative productivity between female and male
+      active authors. Markers are colored by geographic region. The vertical
+      and horizontal dashed lines indicate the respective medians across the
+      58 countries. Years 2024–2050 are projected from the 2023 pyramid; the
+      background is shaded for projected years.
+      See <a href="https://doi.org/10.1093/pnasnexus/pgag059" target="_blank" rel="noopener">our paper</a> for details.
+    </p>
+    <p class="text-small muted" style="margin-top: 8px;">
+      Note: the 2024–2050 trajectories shown here do not appear in Fig. 6 of
+      our paper, which displays only the historical positions of countries
+      from 2010 to 2023. They are extended here using the same population
+      pyramid projection described in the paper&rsquo;s Methods.
+    </p>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/common.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/comparison.js"></script>
+</body>
+</html>
