@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kazuibasou.github.io/researcher_population_pyramids/sitemap.xml
